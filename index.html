@@ -137,25 +137,30 @@ img{display:block; max-width:100%;}
 .crate-floor{position:absolute; left:0; right:0; bottom:46px; height:1px; background:rgba(255,255,255,.2); z-index:1;}
 
 .tape{position:absolute; touch-action:none; cursor:none; z-index:5; will-change:transform,left,top;}
-.tape-scaler{transition:none;}
-.shell{position:relative; width:var(--w); border-radius:9px; overflow:hidden; background:#161616;
-  border:1px solid rgba(255,255,255,.16); box-shadow:0 10px 30px rgba(0,0,0,.5);}
-.shell .art{width:100%; aspect-ratio:16/10; object-fit:cover; display:block; filter:saturate(1.05);}
-.shell .tape-top{position:absolute; top:0; left:0; right:0; height:30%; display:flex; align-items:center; justify-content:center; gap:18%;
-  background:linear-gradient(180deg, rgba(18,18,18,.92), rgba(18,18,18,.25)); pointer-events:none;}
-.reel{width:17%; aspect-ratio:1; border-radius:50%; border:2px solid rgba(255,255,255,.55); position:relative;
-  background:radial-gradient(circle, rgba(255,255,255,.18) 30%, transparent 32%);}
-.reel::before{content:''; position:absolute; inset:24%; border-radius:50%; border:1.5px dashed rgba(255,255,255,.6);
-  animation:spin 3.4s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-.shell .label{position:absolute; left:0; right:0; bottom:0; padding:8px 10px 9px;
-  background:linear-gradient(180deg, transparent, rgba(10,10,10,.93) 38%); display:flex; align-items:flex-end; justify-content:space-between; gap:8px;}
-.shell .label .t{font-size:11.5px; font-weight:700; line-height:1.12; color:var(--ink); letter-spacing:.005em;
-  text-shadow:0 1px 4px rgba(0,0,0,.8); max-width:78%;}
-.shell .take{font-family:'TNanti'; font-size:14px; color:var(--amber); flex:0 0 auto; line-height:1;}
-.tape.feat .shell{border-color:rgba(255,255,255,.85); box-shadow:0 14px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.4);}
+.tape-scaler{transition:none; perspective:1100px;}
+/* a clean monochrome film still you can pick up and toss (no cassette chrome) */
+.shell{position:relative; width:var(--w); transform-style:preserve-3d; transition:transform .5s cubic-bezier(.2,.8,.2,1);}
+.shell .still{position:relative; border-radius:7px; overflow:hidden; border:1px solid var(--line);
+  background:var(--bg2); box-shadow:0 12px 32px rgba(0,0,0,.55);}
+.shell .art{width:100%; aspect-ratio:16/10; object-fit:cover; display:block;
+  filter:contrast(1.04) brightness(.97) saturate(1.02); transition:filter .45s;}
+/* a single sweep of light across the print on hover (replaces the liquid warp) */
+.shell .still::after{content:''; position:absolute; inset:0; pointer-events:none; opacity:0;
+  background:linear-gradient(115deg, transparent 38%, rgba(255,255,255,.15) 50%, transparent 62%);
+  transform:translateX(-70%);}
+.shell .cap{display:flex; align-items:baseline; gap:9px; padding:9px 3px 0;}
+.shell .cap .ix{font-size:10.5px; color:var(--ink-faint); font-variant-numeric:tabular-nums; flex:0 0 auto; letter-spacing:.05em; line-height:1.2;}
+.shell .cap .t{font-size:11.5px; font-weight:500; color:var(--ink-dim); line-height:1.2; letter-spacing:.005em; transition:color .35s;
+  overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;}
+.tape.feat .shell .still{border-color:rgba(244,244,244,.42); box-shadow:0 16px 44px rgba(0,0,0,.62);}
+@media(hover:hover){
+  .tape:hover .art{filter:contrast(1.06) brightness(1.06) saturate(1.06);}
+  .tape:hover .cap .t{color:var(--ink);}
+  .tape:hover .still::after{opacity:1; animation:sheen 1s ease-out forwards;}
+}
+@keyframes sheen{from{transform:translateX(-70%);} to{transform:translateX(75%);}}
 @media(max-width:680px){ .crate-floor{display:none;} }
-@media (pointer:coarse){ .tape{touch-action:auto;} }
+@media (pointer:coarse){ .tape{touch-action:auto;} .shell{transition:none;} }
 
 /* ---------- team ---------- */
 .team-grid{display:flex; flex-wrap:wrap; justify-content:center; gap:30px; margin-top:40px;}
@@ -340,7 +345,7 @@ img{display:block; max-width:100%;}
     <div>
       <div class="kicker">the catalogue</div>
       <h2 class="h-big">the work</h2>
-      <p class="work-sub">Every tape is a film we scored. Toss them around. Tap one to play.</p>
+      <p class="work-sub">Every still is a film we scored. Pick one up, give it a toss, tap to watch.</p>
     </div>
   </div>
   <div class="crate" id="crate"></div>
@@ -567,7 +572,7 @@ document.getElementById('footCrt').innerHTML = CREATURE;
 
 /* ---------- SOUND ENGINE (Web Audio, pentatonic so it always sounds good) ---------- */
 var Sound = (function(){
-  var ctx=null, master=null, analyser=null, delay=null, fb=null, on=true, ready=false, mediaNodes=[], ducked=false;
+  var ctx=null, master=null, analyser=null, delay=null, fb=null, on=true, ready=false, mediaNodes=[], ducked=false, specBuf=null;
   // C major pentatonic across ~2.5 octaves
   var SCALE=[261.63,293.66,329.63,392.00,440.00,523.25,587.33,659.25,783.99,880.00,1046.50];
   function ensure(){
@@ -575,7 +580,7 @@ var Sound = (function(){
     var AC = window.AudioContext||window.webkitAudioContext; if(!AC) return;
     ctx = new AC();
     master = ctx.createGain(); master.gain.value = on?0.16:0.0;
-    analyser = ctx.createAnalyser(); analyser.fftSize=64; analyser.smoothingTimeConstant=0.78;
+    analyser = ctx.createAnalyser(); analyser.fftSize=2048; analyser.smoothingTimeConstant=0.74; specBuf=new Uint8Array(analyser.frequencyBinCount);
     master.connect(analyser); analyser.connect(ctx.destination);
     // a little warm space
     delay = ctx.createDelay(); delay.delayTime.value=0.26;
@@ -613,6 +618,29 @@ var Sound = (function(){
     levels:function(nn){ if(!analyser) return null; var arr=new Uint8Array(analyser.frequencyBinCount); analyser.getByteFrequencyData(arr);
       if(!nn||nn>=arr.length) return Array.prototype.slice.call(arr); var out=[],step=arr.length/nn;
       for(var i=0;i<nn;i++) out.push(arr[Math.floor(i*step)]); return out; },
+    /* true frequency spectrum: N log-spaced bands (bass -> treble) averaged from the
+       full FFT, with a gentle high-frequency tilt so treble (which carries far less
+       energy than bass in music) stays visible. This is what makes the visuals read as
+       a moving spectrum instead of one lump pulsing with overall volume. */
+    spectrum:function(N){ if(!analyser||!specBuf) return null; analyser.getByteFrequencyData(specBuf);
+      var nyq=ctx.sampleRate/2, n=specBuf.length, fMin=40, fMax=Math.min(16000,nyq), out=[];
+      for(var i=0;i<N;i++){
+        var f0=fMin*Math.pow(fMax/fMin,i/N), f1=fMin*Math.pow(fMax/fMin,(i+1)/N);
+        var b0=Math.max(0,Math.floor(f0/nyq*n)), b1=Math.min(n-1,Math.ceil(f1/nyq*n)); if(b1<=b0) b1=b0+1;
+        var sum=0,peak=0,c=0; for(var b=b0;b<b1;b++){ sum+=specBuf[b]; if(specBuf[b]>peak) peak=specBuf[b]; c++; }
+        var v=(c?sum/c:0)*0.55 + peak*0.45;     // blend mean+peak so a single strong partial still shows
+        v *= 0.85 + (i/N)*1.4;                    // perceptual high-frequency lift
+        out.push(Math.min(255,v));
+      }
+      return out; },
+    /* three perceptual bands (0..1), so the scalar visuals can each track a different
+       part of the spectrum (e.g. bass warps the wordmark, treble flares the lens). */
+    bands:function(){ if(!analyser||!specBuf) return null; analyser.getByteFrequencyData(specBuf);
+      var nyq=ctx.sampleRate/2, n=specBuf.length;
+      function band(f0,f1,gain){ var b0=Math.max(0,Math.floor(f0/nyq*n)), b1=Math.min(n-1,Math.ceil(f1/nyq*n)), s=0,pk=0,c=0;
+        for(var b=b0;b<=b1;b++){ s+=specBuf[b]; if(specBuf[b]>pk) pk=specBuf[b]; c++; }
+        var mean=c?s/c:0; return Math.min(1,(mean*0.5+pk*0.5)/255*gain); }   // blend so sparse treble still registers
+      return { bass:band(40,160,1.0), mid:band(160,2000,1.25), treble:band(2000,14000,2.6) }; },
     isOn:function(){ return on; },
     /* route an <audio> element through the live analyser so real scores drive
        the equalizer, the lens beam and the liquid wordmark. own gain, so the
@@ -691,7 +719,7 @@ if(FINE){
   var t=0;
   function frame(){
     t+=0.045;
-    var lv = Sound.levels ? Sound.levels(N) : null;
+    var lv = Sound.spectrum ? Sound.spectrum(N) : null;
     var live = lv && lv.some(function(v){ return v>6; });
     for(var i=0;i<N;i++){
       var h;
@@ -711,8 +739,8 @@ if(FINE){
   var lw=document.querySelector('.lightwrap'); if(!lw) return;
   var smooth=0;
   function frame(){
-    var lv = Sound.levels ? Sound.levels(8) : null, amp=0;
-    if(lv){ for(var i=0;i<lv.length;i++){ if(lv[i]>amp) amp=lv[i]; } amp/=255; }
+    var b = Sound.bands ? Sound.bands() : null;
+    var amp = b ? Math.min(1, b.treble*0.8 + b.mid*0.25) : 0;   // light tracks the highs
     smooth += (amp - smooth)*0.25;
     lw.style.setProperty('--glow',(1+smooth*0.9).toFixed(3));
     lw.style.setProperty('--gop',(0.62+smooth*0.38).toFixed(3));
@@ -721,27 +749,7 @@ if(FINE){
   frame();
 })();
 
-/* ---------- WARP controller (one shared SVG displacement, one element at a time) ---------- */
-var Warp=(function(){
-  var d=document.getElementById('warpD');
-  if(!d) return {attach:function(){},detach:function(){}};
-  var cur=null, prox={s:0};
-  function set(){ d.setAttribute('scale', prox.s.toFixed(2)); }
-  return {
-    attach:function(el,scale,dur){
-      if(!el) return; if(cur&&cur!==el) cur.style.filter='';
-      cur=el; el.style.filter='url(#warp)';
-      if(window.gsap){ gsap.killTweensOf(prox); gsap.to(prox,{s:scale,duration:dur||0.35,ease:'power2.out',onUpdate:set}); }
-      else { prox.s=scale; set(); }
-    },
-    detach:function(el,dur){
-      if(cur!==el) return;
-      if(window.gsap){ gsap.killTweensOf(prox); gsap.to(prox,{s:0,duration:dur||0.4,ease:'power2.in',onUpdate:set,
-        onComplete:function(){ if(cur===el){ el.style.filter=''; cur=null; } }}); }
-      else { prox.s=0; set(); el.style.filter=''; cur=null; }
-    }
-  };
-})();
+/* (the liquid-warp controller for the work cards was removed — cards now use a CSS tilt/lift instead) */
 
 /* ---------- HERO WORDMARK goes liquid, swelling with the music ---------- */
 (function(){
@@ -751,10 +759,10 @@ var Warp=(function(){
   wm.style.filter='url(#liquid)';
   var smooth=0;
   (function f(){
-    var lv=Sound.levels?Sound.levels(8):null, amp=0;
-    if(lv){ for(var i=0;i<lv.length;i++){ if(lv[i]>amp) amp=lv[i]; } amp/=255; }
+    var b=Sound.bands?Sound.bands():null;
+    var amp=b?Math.min(1, b.bass*0.85 + b.mid*0.2):0;   // the low end warps the lettering
     smooth += (amp-smooth)*0.2;
-    ld.setAttribute('scale',(smooth*9).toFixed(2));
+    ld.setAttribute('scale',(smooth*13).toFixed(2));
     requestAnimationFrame(f);
   })();
 })();
@@ -852,9 +860,8 @@ var Warp=(function(){
     var width=Math.round(baseTW*(feat?1.05:1));
     var wrap=document.createElement('div'); wrap.className='tape'+(feat?' feat':''); wrap.style.zIndex=feat?6:5;
     wrap.innerHTML='<div class="tape-scaler"><div class="shell" style="--w:'+width+'px">'
-      + '<img class="art" src="'+w.thumb+'" alt="'+w.title.replace(/"/g,'')+'" loading="lazy">'
-      + '<div class="tape-top"><span class="reel"></span><span class="reel"></span></div>'
-      + '<div class="label"><span class="t">'+w.title+'</span><span class="take">'+String(idx+1).padStart(2,'0')+'</span></div>'
+      + '<div class="still"><img class="art" src="'+w.thumb+'" alt="'+w.title.replace(/"/g,'')+'" loading="lazy"></div>'
+      + '<div class="cap"><span class="ix">'+String(idx+1).padStart(2,'0')+'</span><span class="t">'+w.title+'</span></div>'
       + '</div></div>';
     crate.appendChild(wrap);
     var scaler=wrap.querySelector('.tape-scaler');
@@ -872,12 +879,12 @@ var Warp=(function(){
     function playIt(){
       if(st.zoom) return; st.zoom=true; active.delete(st); wrap.style.zIndex=70;
       Sound.chord(st.note%7);
-      Warp.attach(shell,24,0.42);
+      shell.style.transition='none'; shell.style.transform='';
       var r=wrap.getBoundingClientRect();
       var target=Math.min(3.0,(Math.min(window.innerWidth,window.innerHeight)*0.52)/Math.max(1,r.width));
       if(window.gsap) gsap.to(scaler,{scale:target,duration:0.42,ease:'power3.in'});
       setTimeout(function(){ window.openWork(st.vid);
-        setTimeout(function(){ var done=function(){ wrap.style.zIndex=feat?6:5; st.zoom=false; Warp.detach(shell,0.5); active.add(st); start(); };
+        setTimeout(function(){ var done=function(){ wrap.style.zIndex=feat?6:5; st.zoom=false; active.add(st); start(); };
           if(window.gsap) gsap.to(scaler,{scale:1,duration:0.42,ease:'power3.out',onComplete:done}); else done(); }, 420);
       }, window.gsap?400:0);
     }
@@ -902,15 +909,20 @@ var Warp=(function(){
     };
 
     if(FINE && !REDUCED){
-      wrap.addEventListener('pointerenter',function(){ if(!st.grab&&!st.zoom) Warp.attach(shell,12,0.35); });
-      wrap.addEventListener('pointerleave',function(){ if(!st.zoom) Warp.detach(shell,0.4); });
+      wrap.addEventListener('pointerenter',function(){ if(st.grab||st.zoom) return; shell.style.transition='transform .16s ease-out'; wrap.style.zIndex=60; });
+      wrap.addEventListener('pointerleave',function(){ if(st.zoom) return; shell.style.transition='transform .5s cubic-bezier(.2,.8,.2,1)'; shell.style.transform=''; wrap.style.zIndex=feat?6:5; });
       wrap.addEventListener('pointerdown',function(e){ if(st.zoom) return; e.preventDefault(); st.grab=true;
+        shell.style.transition='none'; shell.style.transform='';
         var cr=crate.getBoundingClientRect(); st.gdx=e.clientX-(cr.left+st.x); st.gdy=e.clientY-(cr.top+st.y);
         st.moves=[{x:e.clientX,y:e.clientY,t:performance.now()}]; st.downAt=performance.now(); st.dx=e.clientX; st.dy=e.clientY;
         wrap.setPointerCapture(e.pointerId); wrap.style.zIndex=68; active.add(st); start(); });
-      wrap.addEventListener('pointermove',function(e){ if(!st.grab) return; var cr=crate.getBoundingClientRect();
-        st.x=e.clientX-cr.left-st.gdx; st.y=e.clientY-cr.top-st.gdy;
-        st.moves.push({x:e.clientX,y:e.clientY,t:performance.now()}); if(st.moves.length>6) st.moves.shift(); place(st); });
+      wrap.addEventListener('pointermove',function(e){
+        if(st.grab){ var cr=crate.getBoundingClientRect();
+          st.x=e.clientX-cr.left-st.gdx; st.y=e.clientY-cr.top-st.gdy;
+          st.moves.push({x:e.clientX,y:e.clientY,t:performance.now()}); if(st.moves.length>6) st.moves.shift(); place(st); return; }
+        if(st.zoom) return;
+        var b=shell.getBoundingClientRect(), px=(e.clientX-b.left)/b.width-0.5, py=(e.clientY-b.top)/b.height-0.5;
+        shell.style.transform='translateY(-5px) scale(1.05) rotateX('+(-py*9).toFixed(2)+'deg) rotateY('+(px*12).toFixed(2)+'deg)'; });
       wrap.addEventListener('pointerup',function(e){ if(!st.grab) return; st.grab=false; wrap.style.zIndex=feat?6:5;
         var now=performance.now(), tap=(now-st.downAt<280)&&Math.abs(e.clientX-st.dx)<6&&Math.abs(e.clientY-st.dy)<6;
         if(tap){ playIt(); return; }
@@ -1070,17 +1082,17 @@ var Warp=(function(){
   sizeWave(); window.addEventListener('resize', sizeWave);
   (function drawWave(){
     t+=0.05; wctx.clearRect(0,0,W,H);
-    var lv=Sound.levels?Sound.levels(N):null, playing=!curMedia().paused, mid=H/2, bw=W/N, amp=0;
+    var lv=Sound.spectrum?Sound.spectrum(N):null, playing=!curMedia().paused, mid=H/2, bw=W/N, sumv=0;
     wctx.fillStyle='#f4f4f4';
     for(var i=0;i<N;i++){
       var v;
-      if(playing&&lv){ v=lv[i]/255; if(lv[i]>amp) amp=lv[i]; }
+      if(playing&&lv){ v=lv[i]/255; sumv+=v; }
       else { v=0.04+Math.abs(Math.sin(t*0.6+i*0.3))*0.05; }
       var h=Math.max(1, v*(H*0.92));
       wctx.globalAlpha=playing?0.92:0.30;
       wctx.fillRect(i*bw+bw*0.18, mid-h/2, bw*0.64, h);
     }
-    smoothBeam += ((amp/255)-smoothBeam)*0.2;
+    smoothBeam += ((sumv/N)-smoothBeam)*0.2;
     proj.style.setProperty('--beam', (0.5+smoothBeam*1.4).toFixed(3));
     requestAnimationFrame(drawWave);
   })();
