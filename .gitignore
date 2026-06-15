@@ -1,0 +1,7 @@
+# Dev scratch — screenshots, backups, generators, verifiers. Not part of the published site.
+_*
+*.bak.html
+.surgeignore
+__pycache__/
+*.pyc
+.DS_Store

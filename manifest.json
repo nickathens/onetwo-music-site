@@ -1,0 +1,306 @@
+{
+  "about": "Onetwo is a music production house specialised in bespoke music for film. Our team of producers are highly trained multi-instrumentalist composers with many years of experience in sound engineering, who always deliver impactful solutions to our clients. We are housed in a modular studio space in Athens, Greece, built in 2018, containing a combination of legendary analog recording equipment as well as state-of-the-art contemporary digital interfaces and instruments, giving us the ability to produce everything in-house. We invite you to navigate our page and see for yourselves. Our promise is simple: The perfect soundtrack to your brand.",
+  "tagline": "The perfect soundtrack to your brand.",
+  "contact": {
+    "phone": "+30 210 7714726",
+    "email": "info@onetwo-music.com",
+    "footer": "One Two Music - 2026",
+    "location": "Athens, Greece"
+  },
+  "team": [
+    {
+      "name": "Karolos",
+      "email": "karolos@onetwo-music.com",
+      "photo": "2.original.jpg"
+    },
+    {
+      "name": "Nick",
+      "email": "nick@onetwo-music.com",
+      "photo": "3.2.original.jpg"
+    },
+    {
+      "name": "Ilias",
+      "email": "ilias@onetwo-music.com",
+      "photo": "2.2.original.jpg"
+    }
+  ],
+  "featured": [
+    {
+      "slug": "hyundai-n-the-winter-test-3",
+      "alt": "winter test",
+      "thumb": "maxresdefault.original.jpg"
+    },
+    {
+      "slug": "unicef-36",
+      "alt": "unisef",
+      "thumb": "thumb_2.original.jpg"
+    },
+    {
+      "slug": "violife-change-your-cheese-28",
+      "alt": "violife",
+      "thumb": "1380138881-1863a42bd914e60968ccef6006c43823c41b.original.jpg"
+    },
+    {
+      "slug": "fisher-taste-the-experience-34",
+      "alt": "Fischer_2024.jpg",
+      "thumb": "thumb.original.jpg"
+    },
+    {
+      "slug": "lidl-lidl-hellas-32",
+      "alt": "Screenshot 2023-10-26 at 2.31.22 PM.jpeg",
+      "thumb": "Screenshot_2023-10-26_at_2.31.22_PM.original.jpg"
+    },
+    {
+      "slug": "athens-with-google-27",
+      "alt": "Athens with Google",
+      "thumb": "Social_Sharing_ATH_MUSEUM.original.jpg"
+    }
+  ],
+  "work": [
+    {
+      "slug": "unicef-36",
+      "title": "UNICEF | Σημάδια",
+      "vimeo": "1170671354",
+      "href": "https://vimeo.com/manage/videos/1170671354",
+      "thumb": "thumb_2.original.jpg"
+    },
+    {
+      "slug": "aktor-37",
+      "title": "AKTOR | Θα Σέβεσαι",
+      "vimeo": "1170671429",
+      "href": "https://vimeo.com/manage/videos/1170671429",
+      "thumb": "thumb_JkUngk6.original.jpg"
+    },
+    {
+      "slug": "fisher-taste-the-experience-34",
+      "title": "Fisher | Taste The Experience",
+      "vimeo": "1070309018",
+      "href": "https://vimeo.com/1070309018",
+      "thumb": "thumb.original.jpg"
+    },
+    {
+      "slug": "olympos-show-35",
+      "title": "Olympos Show",
+      "vimeo": "1070309725",
+      "href": "https://vimeo.com/1070309725",
+      "thumb": "thumb_1.original.jpg"
+    },
+    {
+      "slug": "hyundai-n-the-winter-test-3",
+      "title": "Hyundai N | The Winter Test",
+      "vimeo": "429260241",
+      "href": "https://vimeo.com/429260241",
+      "thumb": "maxresdefault.original.jpg"
+    },
+    {
+      "slug": "athens-with-google-27",
+      "title": "Athens with Google",
+      "vimeo": "809005763",
+      "href": "https://vimeo.com/809005763",
+      "thumb": "Social_Sharing_ATH_MUSEUM.original.jpg"
+    },
+    {
+      "slug": "-30",
+      "title": "Λουμίδης Παπαγάλος  Έκαστος Ι Απόλαυση μόνο για σένα",
+      "vimeo": "878232848",
+      "href": "https://vimeo.com/manage/videos/878232848",
+      "thumb": "hqdefault.original_aAsNPqW.jpg"
+    },
+    {
+      "slug": "violife-change-your-cheese-28",
+      "title": "Violife | Change your Cheese",
+      "vimeo": "845010377",
+      "href": "https://vimeo.com/manage/videos/845010377",
+      "thumb": "1380138881-1863a42bd914e60968ccef6006c43823c41b.original.jpg"
+    },
+    {
+      "slug": "betshop-24",
+      "title": "Betshop",
+      "vimeo": "686301927",
+      "href": "https://vimeo.com/686301927",
+      "thumb": "betshop.original.jpg"
+    },
+    {
+      "slug": "endless-earth-23",
+      "title": "Endless Earth",
+      "vimeo": "533082924",
+      "href": "https://vimeo.com/533082924",
+      "thumb": "Screenshot_2021-05-20_at_16.21.42.original.jpg"
+    },
+    {
+      "slug": "lidl-lidl-hellas-32",
+      "title": "Στα Lidl Παίρνουμε το Φρέσκο Ψάρι στα Σοβαρά | Lidl Hellas",
+      "vimeo": "878248790",
+      "href": "https://vimeo.com/manage/videos/878248790",
+      "thumb": "Screenshot_2023-10-26_at_2.31.22_PM.original.jpg"
+    },
+    {
+      "slug": "prolepsis-29",
+      "title": "Θέλω να γίνω το αύριο αυτού του κόσμου | Ινστιτούτο Prolepsis",
+      "vimeo": "878232899",
+      "href": "https://vimeo.com/manage/videos/878232899",
+      "thumb": "maxresdefault_7P67zZi.original.jpg"
+    },
+    {
+      "slug": "a-31",
+      "title": "Aναψυκτικά Κλιάφα | Αστροναύτης",
+      "vimeo": "878240169",
+      "href": "https://vimeo.com/manage/videos/878240169",
+      "thumb": "Screenshot_2023-10-26_at_1.58.21_PM.original.jpg"
+    },
+    {
+      "slug": "olympos-26",
+      "title": "Olympos | Ταχίνι",
+      "vimeo": "686305039",
+      "href": "https://vimeo.com/686305039",
+      "thumb": "olympos.original.jpg"
+    },
+    {
+      "slug": "flora-be-a-natural-33",
+      "title": "FLORA | Be A Natural",
+      "vimeo": "878248723",
+      "href": "https://vimeo.com/manage/videos/878248723",
+      "thumb": "Screenshot_2023-10-26_at_2.30.22_PM.original.jpg"
+    },
+    {
+      "slug": "pantene-hair-has-no-gender-25",
+      "title": "Pantene | Hair has no Gender",
+      "vimeo": "686303521",
+      "href": "https://vimeo.com/686303521",
+      "thumb": "hair-1536x762-1.original.jpg"
+    },
+    {
+      "slug": "str8-go-for-great-1",
+      "title": "STR8 | Go For Great",
+      "vimeo": "329069225",
+      "href": "https://vimeo.com/329069225",
+      "thumb": "Screenshot_2020-11-26_at_13.05.19.original_1.original.jpg"
+    },
+    {
+      "slug": "serkova-crystal-pure-2",
+      "title": "Serkova | Crystal Pure",
+      "vimeo": "293696946",
+      "href": "https://vimeo.com/293696946",
+      "thumb": "Screenshot_2022-03-10_at_17.14.05.original.jpg"
+    },
+    {
+      "slug": "coffee-island-8",
+      "title": "Coffee Island",
+      "vimeo": "221269193",
+      "href": "https://vimeo.com/221269193",
+      "thumb": "CoffeeIsland_Photo.original.jpg"
+    },
+    {
+      "slug": "green-cola-9",
+      "title": "Green Cola",
+      "vimeo": "205521570",
+      "href": "https://vimeo.com/205521570",
+      "thumb": "GreenCola_Photo.original.jpg"
+    },
+    {
+      "slug": "goodys-burgerhouse-6",
+      "title": "Goody&#x27;s Burgerhouse",
+      "vimeo": "204006045",
+      "href": "https://vimeo.com/204006045",
+      "thumb": "Goodys_Photo.original.jpg"
+    },
+    {
+      "slug": "tedx-academy-2015-16",
+      "title": "TedX Academy - 2015",
+      "vimeo": "204007486",
+      "href": "https://vimeo.com/204007486",
+      "thumb": "Screenshot_2020-11-25_at_15.47.37.original.jpg"
+    },
+    {
+      "slug": "erre-due-11",
+      "title": "Erre Due",
+      "vimeo": "334168140",
+      "href": "https://vimeo.com/334168140",
+      "thumb": "erredue_photo.original.jpg"
+    },
+    {
+      "slug": "intersport-passion-4",
+      "title": "Intersport | Passion",
+      "vimeo": "258967851",
+      "href": "https://vimeo.com/258967851",
+      "thumb": "InterSport_Photo.original.jpg"
+    },
+    {
+      "slug": "bake-rolls-7",
+      "title": "Bake Rolls",
+      "vimeo": "263015306",
+      "href": "https://vimeo.com/263015306",
+      "thumb": "BakeRolls_Photo.original.jpg"
+    },
+    {
+      "slug": "petrogaz-15",
+      "title": "PetroGaz",
+      "vimeo": "204202788",
+      "href": "https://vimeo.com/204202788",
+      "thumb": "PetroGaz_Photo.original.jpg"
+    },
+    {
+      "slug": "dimello-12",
+      "title": "Dimello",
+      "vimeo": "254119414",
+      "href": "https://vimeo.com/254119414",
+      "thumb": "Dimmelo_Photo.original.jpg"
+    },
+    {
+      "slug": "cosmote-14",
+      "title": "Cosmote",
+      "vimeo": "206543198",
+      "href": "https://vimeo.com/206543198",
+      "thumb": "Spitia_Photo.original.jpg"
+    },
+    {
+      "slug": "milko-pistepseto-17",
+      "title": "Milko | #pistepseto",
+      "vimeo": "204004832",
+      "href": "https://vimeo.com/204004832",
+      "thumb": "Screenshot_2022-03-10_at_17.14.58.original.png"
+    },
+    {
+      "slug": "serkova-100-13",
+      "title": "Serkova | 100%",
+      "vimeo": "231557865",
+      "href": "https://vimeo.com/231557865",
+      "thumb": "Serkova18_Photo.original.jpg"
+    },
+    {
+      "slug": "zero-caramels-18",
+      "title": "Zero Caramels",
+      "vimeo": "204004671",
+      "href": "https://vimeo.com/204004671",
+      "thumb": "Zero_Photo.original.jpg"
+    },
+    {
+      "slug": "7days-tsourekaki-19",
+      "title": "7DAYS | Tsourekaki",
+      "vimeo": "204002651",
+      "href": "https://vimeo.com/204002651",
+      "thumb": "Tsourekaki_Photo.original.jpg"
+    },
+    {
+      "slug": "samsung-india-galaxy-m51-20",
+      "title": "Samsung India | Galaxy M51",
+      "vimeo": "483984076",
+      "href": "https://vimeo.com/483984076",
+      "thumb": "Screenshot_2020-11-26_at_12.25.03.original.jpg"
+    },
+    {
+      "slug": "samsung-india-galaxy-m51-21",
+      "title": "Samsung India | Galaxy M51",
+      "vimeo": "483988769",
+      "href": "https://vimeo.com/483988769",
+      "thumb": "Screenshot_2020-11-26_at_12.37.48.original.jpg"
+    },
+    {
+      "slug": "cybereason-22",
+      "title": "Cybereason",
+      "vimeo": "483988769",
+      "href": "https://vimeo.com/483988769",
+      "thumb": "OWL.original.jpg"
+    }
+  ]
+}
