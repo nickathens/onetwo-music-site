@@ -861,16 +861,16 @@ if(FINE){
     var wrap=document.createElement('div'); wrap.className='tape'+(feat?' feat':''); wrap.style.zIndex=feat?6:5;
     wrap.innerHTML='<div class="tape-scaler"><div class="shell" style="--w:'+width+'px">'
       + '<div class="still"><img class="art" src="'+w.thumb+'" alt="'+w.title.replace(/"/g,'')+'" loading="lazy"></div>'
-      + '<div class="cap"><span class="ix">'+String(idx+1).padStart(2,'0')+'</span><span class="t">'+w.title+'</span></div>'
+      + '<div class="cap"><span class="t">'+w.title+'</span></div>'
       + '</div></div>';
     crate.appendChild(wrap);
     var scaler=wrap.querySelector('.tape-scaler');
     var shell=wrap.querySelector('.shell');
     var th = wrap.offsetHeight || width*0.66;
-    var hx = col*cellW + (cellW-width)/2 + (J(idx,4)-0.5)*Math.min(30,Math.max(0,cellW-width));
-    var hy = 36 + row*rowH + (J(idx,5)-0.5)*16;
+    var hx = col*cellW + (cellW-width)/2;
+    var hy = 36 + row*rowH;
     hx = Math.max(PAD, Math.min(W-width-PAD, hx));
-    var hrot = (J(idx,7)-0.5)*8;
+    var hrot = 0;
     var st={el:wrap, sc:scaler, vid:w.vimeo, idx:idx, w:width, h:th, note:idx%11,
             hx:hx, hy:hy, hrot:hrot, x:hx, y:-th-80-row*26, vx:0, vy:0, rot:hrot,
             grab:false, zoom:false, moves:[]};
