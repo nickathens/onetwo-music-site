@@ -198,15 +198,12 @@ section[id]{scroll-margin-top:var(--bar)}
 .ht{position:absolute;inset:0;display:block;overflow:hidden;background:#111;color:#fff;text-decoration:none}
 .ht img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s var(--ease)}
 .ht::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.62) 0%,rgba(0,0,0,.16) 30%,rgba(0,0,0,0) 50%)}
-.ht .cap{position:absolute;z-index:1;left:var(--pad);right:calc(var(--pad) + 96px);bottom:clamp(14px,1.6vw,28px)}
-.ht .cl{display:block;font:800 clamp(17px,1.5vw,30px)/1.05 var(--f-display);letter-spacing:-.015em;text-transform:uppercase}
-.ht .ti{display:block;margin-top:5px;font:600 14px/1.25 var(--f-label);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
-.ht .chip{left:auto;right:var(--pad);bottom:clamp(14px,1.6vw,28px);z-index:1}
+/* the job's name is for screen readers only; block keeps a space between client and title in the link's name */
+.ht .cap span{display:block}
 .ht:focus-visible{outline:none}
 .ht:focus-visible::before{content:"";position:absolute;inset:6px;z-index:2;border:2px solid #fff;box-shadow:0 0 0 2px #000,inset 0 0 0 2px #000;pointer-events:none}
 @media (hover:hover){
   .ht:hover img,.ht:focus-visible img{transform:scale(1.035);filter:brightness(.8)}
-  .ht:hover .chip,.ht:focus-visible .chip{opacity:1;transform:none}
 }
 
 /* ---------- reel, at the top of films ---------- */
@@ -431,8 +428,6 @@ section[id]{scroll-margin-top:var(--bar)}
   .tile .cap{position:static;opacity:1;transform:none;padding:12px 0 0}
   .tile .cr{color:var(--mut)}
   .chip{opacity:1;transform:none}
-  .ht .chip{display:none}
-  .ht .cap{right:var(--pad)}
 }
 @media (max-aspect-ratio:7/5) and (min-width:641px){
   .home-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}
@@ -639,9 +634,8 @@ HOME.forEach(function(h,n){
   var i=byId[h.id],w=WORK[i],li=el('li'),b=el('a','ht');b.href=vimeoUrl(w);b.dataset.open=i;b.dataset.list='home';
   var img=el('img');img.src=w.hd||w.img;img.alt='';img.decoding='async';if(n<3)img.fetchPriority='high';if(h.pos)img.style.objectPosition=h.pos;
   b.appendChild(img);
-  var cap=el('span','cap');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
+  var cap=el('span','cap vh');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
   b.appendChild(cap);
-  var chip=el('span','chip','Play');chip.setAttribute('aria-hidden','true');b.appendChild(chip);
   li.appendChild(b);home.appendChild(li);
 });
 
