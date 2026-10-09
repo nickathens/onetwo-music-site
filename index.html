@@ -16,6 +16,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/geologica-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<!-- the first two tiles of the opening grid (OT_HOME in data.js), fetched before the script draws the grid -->
+<link rel="preload" href="assets/media/hd/1170671354.jpg" as="image" fetchpriority="high">
+<link rel="preload" href="assets/media/web/1380138881-1863a42bd914e60968ccef6006c43823c41b.original.jpg" as="image" fetchpriority="high">
 <script>document.documentElement.className+=' js';if(/[?&]theme=dark\b/.test(location.search))document.documentElement.className+=' theme-dark';</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"OneTwo Music","url":"https://onetwo-music.com/","email":"info@onetwo-music.com","telephone":"+30 210 7714726","address":{"@type":"PostalAddress","addressLocality":"Athens","addressCountry":"GR"},"sameAs":["https://vimeo.com/onetwomusic"]}</script>
 <style>
@@ -437,8 +440,8 @@ section[id]{scroll-margin-top:var(--bar)}
 @media (max-width:640px){
   :root{--bar:52px}
   .brand span{font-size:12px;letter-spacing:.2em}
-  .home-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto;min-height:0}
-  .home-grid li{aspect-ratio:4/3}
+  /* six 4:3 rows; the height is set before the script adds the tiles, so nothing below jumps */
+  .home-grid{grid-template-columns:1fr;grid-template-rows:repeat(6,minmax(0,1fr));height:auto;min-height:0;aspect-ratio:2/9}
   .reel-ctl .full{display:none}
   .grid{grid-template-columns:1fr;gap:30px}
   .tile .cl{font-size:20px}
