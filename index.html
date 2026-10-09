@@ -188,32 +188,43 @@ section[id]{scroll-margin-top:var(--bar)}
 .side-l{left:12px;transform:translateY(-50%) rotate(180deg)}
 .side-r{right:12px;transform:translateY(-50%)}
 
-/* ---------- hero ---------- */
-.hero{position:relative;height:100vh;height:100svh;min-height:540px;display:grid;grid-template-rows:var(--bar) minmax(0,1fr) 54px;background:#000;color:#fff}
-.hero-media{grid-row:2;position:relative;overflow:hidden;background:#000}
-.hero-media video,.hero-media .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-media video{opacity:0;transition:opacity 1.6s var(--ease)}
-.hero-media video.is-on{opacity:1}
-.hero-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.66) 0%,rgba(0,0,0,.18) 30%,rgba(0,0,0,0) 46%)}
-.hero-cap,.hero-latest{position:absolute;bottom:clamp(22px,3.4vw,46px);font:500 15px/1.42 var(--f-label);letter-spacing:.12em;text-transform:uppercase}
-.hero-cap{left:var(--pad-in)}
-.hero-cap b{display:block;font-weight:800;letter-spacing:.16em}
-.hero-cap span{display:block;color:rgba(255,255,255,.74)}
-.hero-latest{right:var(--pad-in);display:grid;grid-template-columns:auto auto;column-gap:22px;align-items:start}
-.hero-latest .lab{color:rgba(255,255,255,.6);padding-top:1px}
-.hero-latest ul{display:grid;gap:3px}
-.hero-latest a{display:inline-block;text-decoration:none;letter-spacing:.1em;padding:1px 0}
-.hero-latest a:hover,.hero-latest a:focus-visible{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.hero-latest .cl{font-weight:800}
-.hero-foot{grid-row:3;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(16px,2.4vw,36px);padding:0 var(--pad);font:600 12px/1 var(--f-label);letter-spacing:.18em;text-transform:uppercase}
-.hero-foot button{padding:12px 0}
-.sound .w{color:rgba(255,255,255,.52);transition:color .25s}
-.sound[aria-pressed=true] .on,.sound[aria-pressed=false] .off{color:#fff}
-.progress{height:1px;background:rgba(255,255,255,.2);position:relative;overflow:hidden}
-.progress i{position:absolute;inset:0;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
-.hero-ctl{display:flex;gap:clamp(18px,2vw,30px)}
-.hero-ctl button:hover,.sound:hover .w{color:#fff}
-.hero-ctl button:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+/* ---------- home: the opening grid of six jobs ---------- */
+.home{padding-top:var(--bar);background:#000}
+.home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:2px;height:calc(100vh - var(--bar));height:calc(100svh - var(--bar));min-height:320px}
+.home-grid li{position:relative;min-width:0;min-height:0}
+.ht{position:absolute;inset:0;display:block;overflow:hidden;background:#111;color:#fff;text-decoration:none}
+.ht img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s var(--ease)}
+.ht::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.62) 0%,rgba(0,0,0,.16) 30%,rgba(0,0,0,0) 50%)}
+.ht .cap{position:absolute;z-index:1;left:var(--pad);right:calc(var(--pad) + 96px);bottom:clamp(14px,1.6vw,28px)}
+.ht .cl{display:block;font:800 clamp(17px,1.5vw,30px)/1.05 var(--f-display);letter-spacing:-.015em;text-transform:uppercase}
+.ht .ti{display:block;margin-top:5px;font:600 14px/1.25 var(--f-label);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+.ht .chip{left:auto;right:var(--pad);bottom:clamp(14px,1.6vw,28px);z-index:1}
+.ht:focus-visible{outline:none}
+.ht:focus-visible::before{content:"";position:absolute;inset:6px;z-index:2;border:2px solid #fff;box-shadow:0 0 0 2px #000,inset 0 0 0 2px #000;pointer-events:none}
+@media (hover:hover){
+  .ht:hover img,.ht:focus-visible img{transform:scale(1.035);filter:brightness(.8)}
+  .ht:hover .chip,.ht:focus-visible .chip{opacity:1;transform:none}
+}
+
+/* ---------- reel, at the top of films ---------- */
+.reel{margin-bottom:clamp(64px,7vw,128px)}
+.reel-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;color:#fff}
+.reel-media video,.reel-media .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel-media video{opacity:0;transition:opacity 1.6s var(--ease)}
+.reel-media video.is-on{opacity:1}
+.reel-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.62) 0%,rgba(0,0,0,.16) 30%,rgba(0,0,0,0) 46%)}
+.reel-cap{position:absolute;left:clamp(16px,2.4vw,40px);bottom:clamp(16px,2.6vw,40px);font:500 15px/1.42 var(--f-label);letter-spacing:.12em;text-transform:uppercase}
+.reel-cap b{display:block;font-weight:800;letter-spacing:.16em}
+.reel-cap span{display:block;color:rgba(255,255,255,.74)}
+.reel-foot{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:clamp(16px,2.4vw,36px);min-height:54px;font:600 12px/1 var(--f-label);letter-spacing:.18em;text-transform:uppercase}
+.reel-foot button{padding:12px 0}
+.sound .w{color:var(--mut);transition:color .25s}
+.sound[aria-pressed=true] .on,.sound[aria-pressed=false] .off{color:var(--fg)}
+.progress{height:1px;background:var(--ln);position:relative;overflow:hidden}
+.progress i{position:absolute;inset:0;background:var(--fg);transform-origin:0 50%;transform:scaleX(0)}
+.reel-ctl{display:flex;gap:clamp(18px,2vw,30px)}
+.reel-ctl button:hover,.sound:hover .w{color:var(--fg)}
+.reel-ctl button:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
 
 /* ---------- intro ---------- */
 .intro{padding:clamp(96px,12vw,200px) var(--pad) clamp(96px,11vw,180px)}
@@ -386,11 +397,9 @@ section[id]{scroll-margin-top:var(--bar)}
 .js .rvm.in .mask>span{transform:none}
 .js .rvm.in .mask:nth-child(2)>span{transition-delay:.08s}
 .js .rvm.in .mask:nth-child(3)>span{transition-delay:.16s}
-.js .hero-cap,.js .hero-latest{opacity:0;transform:translateY(14px);transition:opacity 1s var(--ease) .5s,transform 1.2s var(--ease) .5s}
-.js .ready .hero-cap,.js .ready .hero-latest{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
-  .js .rv,.js .rvm .mask>span,.js .hero-cap,.js .hero-latest{opacity:1!important;transform:none!important;transition:none!important}
-  .tile img,.case .ph img{transition:none!important}
+  .js .rv,.js .rvm .mask>span{opacity:1!important;transform:none!important;transition:none!important}
+  .tile img,.case .ph img,.ht img{transition:none!important}
 }
 
 /* ---------- responsive ---------- */
@@ -419,13 +428,18 @@ section[id]{scroll-margin-top:var(--bar)}
   .tile .cap{position:static;opacity:1;transform:none;padding:12px 0 0}
   .tile .cr{color:var(--mut)}
   .chip{opacity:1;transform:none}
+  .ht .chip{display:none}
+  .ht .cap{right:var(--pad)}
+}
+@media (max-aspect-ratio:7/5) and (min-width:641px){
+  .home-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:640px){
   :root{--bar:52px}
   .brand span{font-size:12px;letter-spacing:.2em}
-  .hero{grid-template-rows:var(--bar) minmax(0,1fr) 50px}
-  .hero-latest{display:none}
-  .hero-ctl .full{display:none}
+  .home-grid{grid-template-columns:1fr;grid-template-rows:none;height:auto;min-height:0}
+  .home-grid li{aspect-ratio:4/3}
+  .reel-ctl .full{display:none}
   .grid{grid-template-columns:1fr;gap:30px}
   .tile .cl{font-size:20px}
   .sec-head{flex-direction:column;align-items:flex-start}
@@ -438,10 +452,6 @@ section[id]{scroll-margin-top:var(--bar)}
   .film-row{grid-template-columns:44px minmax(0,1fr) auto;column-gap:12px}
   .player{grid-template-columns:auto minmax(0,1fr) auto;border-radius:22px}
   .pl-time{display:none}
-}
-@media (orientation:portrait) and (max-width:900px){
-  .hero-media video,.hero-media .poster{object-fit:contain}
-  .hero-shade{display:none}
 }
 </style>
 </head>
@@ -478,29 +488,8 @@ section[id]{scroll-margin-top:var(--bar)}
 
 <main id="main">
 
-<section class="hero" id="top" data-tone="dark" aria-label="Showreel">
-  <div class="hero-media" id="heroMedia">
-    <img class="poster" src="assets/reel/hero_poster.jpg" alt="" width="1280" height="720" fetchpriority="high">
-    <video id="reel" muted playsinline preload="metadata" aria-hidden="true"></video>
-    <div class="hero-shade"></div>
-    <div class="hero-cap">
-      <b>OneTwo Music</b>
-      <span>Film music reel</span>
-      <span>Athens, Greece</span>
-    </div>
-    <div class="hero-latest">
-      <p class="lab">Latest</p>
-      <ul id="latest"></ul>
-    </div>
-  </div>
-  <div class="hero-foot">
-    <button class="sound" id="soundBtn" type="button" aria-pressed="false"><span class="vh">Reel sound</span>Sound <span class="w on">On</span> / <span class="w off">Off</span></button>
-    <div class="progress" aria-hidden="true"><i id="reelProg"></i></div>
-    <div class="hero-ctl">
-      <button id="pauseBtn" type="button">Pause</button>
-      <button class="full" id="fullBtn" type="button">Full reel</button>
-    </div>
-  </div>
+<section class="home" id="top" data-tone="dark" aria-label="Selected work">
+  <ul class="home-grid" id="home"></ul>
 </section>
 
 <section class="intro" id="about" data-tone="light">
@@ -534,6 +523,26 @@ section[id]{scroll-margin-top:var(--bar)}
     <div class="sec-head">
       <h2 class="giant rvm" id="filmsTitle"><span class="mask"><span>Films</span></span></h2>
       <p class="rv"><span class="lab">Features, shorts and documentaries. Press play to hear the score.</span></p>
+    </div>
+    <div class="reel rv" role="group" aria-label="Showreel">
+      <div class="reel-media" id="reelMedia">
+        <img class="poster" src="assets/reel/hero_poster.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+        <video id="reel" muted playsinline preload="none" aria-hidden="true"></video>
+        <div class="reel-shade"></div>
+        <div class="reel-cap">
+          <b>OneTwo Music</b>
+          <span>Film music reel</span>
+          <span>Athens, Greece</span>
+        </div>
+      </div>
+      <div class="reel-foot">
+        <button class="sound" id="soundBtn" type="button" aria-pressed="false"><span class="vh">Reel sound</span>Sound <span class="w on">On</span> / <span class="w off">Off</span></button>
+        <div class="progress" aria-hidden="true"><i id="reelProg"></i></div>
+        <div class="reel-ctl">
+          <button id="pauseBtn" type="button">Pause</button>
+          <button class="full" id="fullBtn" type="button">Full reel</button>
+        </div>
+      </div>
     </div>
     <div class="films-wrap">
       <ol class="film-list" id="filmList"></ol>
@@ -619,13 +628,18 @@ function titleInto(h,w){
   if(w.title){h.appendChild(el('span','sep','·'));h.appendChild(el('span',null,w.title))}
 }
 
-/* ---------- hero: latest ---------- */
-var latest=$('#latest');
-WORK.slice(0,3).forEach(function(w,i){
-  var li=el('li'),b=el('a');b.href=vimeoUrl(w);b.dataset.open=i;
-  b.appendChild(el('span','cl',w.client));
-  if(w.title){b.appendChild(D.createTextNode(' · '));b.appendChild(el('span',null,w.title))}
-  li.appendChild(b);latest.appendChild(li);
+/* ---------- home: the opening grid ---------- */
+var byId={};WORK.forEach(function(w,i){byId[w.id]=i});
+var HOME=(W.OT_HOME||[]).filter(function(h){return Object.prototype.hasOwnProperty.call(byId,h.id)});
+var home=$('#home');
+HOME.forEach(function(h,n){
+  var i=byId[h.id],w=WORK[i],li=el('li'),b=el('a','ht');b.href=vimeoUrl(w);b.dataset.open=i;b.dataset.list='home';
+  var img=el('img');img.src=w.hd||w.img;img.alt='';img.decoding='async';if(n<3)img.fetchPriority='high';if(h.pos)img.style.objectPosition=h.pos;
+  b.appendChild(img);
+  var cap=el('span','cap');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
+  b.appendChild(cap);
+  var chip=el('span','chip','Play');chip.setAttribute('aria-hidden','true');b.appendChild(chip);
+  li.appendChild(b);home.appendChild(li);
 });
 
 /* ---------- intro ---------- */
@@ -731,8 +745,8 @@ if('IntersectionObserver' in W&&!REDUCED){
   reveal.forEach(function(n){io.observe(n)});
 }else reveal.forEach(function(n){n.classList.add('in')});
 
-/* ---------- hero reel ---------- */
-var vid=$('#reel'),heroMedia=$('#heroMedia'),soundBtn=$('#soundBtn'),pauseBtn=$('#pauseBtn'),prog=$('#reelProg');
+/* ---------- reel (films) ---------- */
+var vid=$('#reel'),reelMedia=$('#reelMedia'),soundBtn=$('#soundBtn'),pauseBtn=$('#pauseBtn'),prog=$('#reelProg');
 var holds={},userPaused=false,start=REEL.start||0;
 var saveData=navigator.connection&&navigator.connection.saveData;
 function reelApply(){
@@ -753,24 +767,26 @@ vid.addEventListener('ended',function(){vid.currentTime=start;reelApply()});
 vid.addEventListener('timeupdate',function(){if(vid.duration)prog.style.transform='scaleX('+(vid.currentTime/vid.duration)+')'});
 soundBtn.addEventListener('click',function(){setSound(vid.muted)});
 pauseBtn.addEventListener('click',function(){userPaused=!userPaused;reelApply()});
-if('IntersectionObserver' in W){new IntersectionObserver(function(es){hold('view',!es[0].isIntersecting)},{threshold:.05}).observe(heroMedia)}
+if('IntersectionObserver' in W){holds.view=1;new IntersectionObserver(function(es){hold('view',!es[es.length-1].isIntersecting)},{threshold:.05}).observe(reelMedia)}
 D.addEventListener('visibilitychange',function(){hold('tab',D.hidden)});
 reelApply();
-requestAnimationFrame(function(){$('.hero').classList.add('ready')});
 
 /* ---------- lightbox ---------- */
 var lb=$('#lb'),lbFrame=$('#lbFrame'),lbTitle=$('#lbTitle'),lbCred=$('#lbCred'),lbCount=$('#lbCount'),lbVimeo=$('#lbVimeo'),lbPrev=$('#lbPrev'),lbNext=$('#lbNext');
-var ORDER=featured.map(function(p){return p[1]}).concat(rest.map(function(p){return p[1]})),pos=-1,cur=-1,lastFocus=null,N=ORDER.length;
+var ORDER=featured.map(function(p){return p[1]}).concat(rest.map(function(p){return p[1]})),HOME_ORDER=HOME.map(function(h){return byId[h.id]});
+var list=ORDER,pos=-1,cur=-1,lastFocus=null;
 function lbShow(){
   if(!lb.hidden)return;
   lastFocus=D.activeElement;lb.hidden=false;ROOT.classList.add('lock');hold('lb',true);scorePause();
   $('#lbClose').focus();
 }
-function openWork(i){
-  var k=ORDER.indexOf(i);if(k<0)return;openAt(k);
+/* Prev and Next step through the list the job was opened from: the six on the opening grid, or all the work. */
+function openWork(i,from){
+  list=from==='home'&&HOME_ORDER.indexOf(i)>=0?HOME_ORDER:ORDER;
+  var k=list.indexOf(i);if(k<0)return;openAt(k);
 }
 function openAt(k){
-  pos=(k+N)%N;cur=ORDER[pos];var w=WORK[cur];
+  var N=list.length;pos=(k+N)%N;cur=list[pos];var w=WORK[cur];
   lbFrame.textContent='';
   var f=D.createElement('iframe');
   f.src='https://player.vimeo.com/video/'+encodeURIComponent(w.id)+'?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
@@ -802,7 +818,7 @@ function lbClose(){
 D.addEventListener('click',function(e){
   var t=e.target.closest('[data-open]');
   if(!t||e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-  e.preventDefault();openWork(+t.dataset.open);
+  e.preventDefault();openWork(+t.dataset.open,t.dataset.list);
 });
 $('#fullBtn').addEventListener('click',openReel);
 $('#lbClose').addEventListener('click',lbClose);

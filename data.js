@@ -18,6 +18,16 @@ window.OT_PILLARS=[
 window.OT_SERVICES=["Original music", "Sound design & mixing", "Music editing", "Music rights"];
 window.OT_CONTACT={"phone": "+30 210 7714726", "email": "info@onetwo-music.com", "location": "Athens, Greece", "vimeo": "https://vimeo.com/onetwomusic"};
 window.OT_REEL={"src": "assets/reel/reel_web.mp4", "poster": "assets/reel/hero_poster.jpg", "start": 6.9, "title": "Film music reel", "vimeo": "1025389547"};
+/* The opening grid: the six jobs it shows, in order, by Vimeo id (each one is in OT_WORK below).
+   pos is the part of the still that stays in view when a tile crops it. */
+window.OT_HOME=[
+ {"id": "1170671354"},
+ {"id": "845010377"},
+ {"id": "809005763", "pos": "22% 50%"},
+ {"id": "429260241", "pos": "100% 0%"},
+ {"id": "1070309018"},
+ {"id": "686305039", "pos": "100% 50%"}
+];
 window.OT_WORK=[
  {
   "id": "1170671354",
@@ -459,7 +469,7 @@ window.OT_TEAM=[
  }
 ];
 
-/* Features & shorts with their scores. The first entry is the showreel, which the hero plays. */
+/* Features & shorts with their scores. The first entry is the showreel; the page plays the reel from OT_REEL, at the top of the Films section. */
 window.OT_FILMS=[
  {title:"The Reel", year:"2026", kind:"Showreel", note:"ONETWO Music", collab:"", video:"assets/reel/reel_web.mp4", poster:"assets/reel/reel_poster.jpg", tracks:[]},
  {title:"Gorgonà", year:"2025", kind:"Feature", note:"Venice Film Festival", collab:"", poster:"assets/films/gorgona.jpg", tracks:[
