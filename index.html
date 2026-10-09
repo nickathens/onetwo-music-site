@@ -195,15 +195,24 @@ section[id]{scroll-margin-top:var(--bar)}
 .home{padding-top:var(--bar);background:#000}
 .home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:2px;height:calc(100vh - var(--bar));height:calc(100svh - var(--bar));min-height:320px}
 .home-grid li{position:relative;min-width:0;min-height:0}
-.ht{position:absolute;inset:0;display:block;overflow:hidden;background:#111;color:#fff;text-decoration:none}
-.ht img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s var(--ease)}
+.ht{position:absolute;inset:0;display:block;overflow:hidden;background:#111;color:#fff;text-decoration:none;container-type:size}
+.ht>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s var(--ease)}
 .ht::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.62) 0%,rgba(0,0,0,.16) 30%,rgba(0,0,0,0) 50%)}
 /* the job's name is for screen readers only; block keeps a space between client and title in the link's name */
 .ht .cap span{display:block}
+/* the brand, small and white in the corner; sizes follow the tile (cqmin), the px value is for browsers without it */
+.mk{position:absolute;left:1.15em;bottom:1.05em;z-index:1;display:flex;align-items:flex-end;font-size:18px;font-size:clamp(14px,4.2cqmin,26px);color:#fff;pointer-events:none;filter:drop-shadow(0 1px 5px rgba(0,0,0,.3))}
+.mk img{display:block;width:auto;height:calc(var(--mh,1.6)*1em)}
+/* words set before a logo (Athens with Google): cap height and baseline matched to the logo's */
+.mk .pre{font:400 calc(var(--mh,1.6)*1.07em)/1 var(--f-display);margin:0 .3em calc(var(--mh,1.6)*.09em) 0;white-space:nowrap}
+/* an award, as a small sticker on the picture */
+.stk{position:absolute;top:1.3em;right:1.3em;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.5em;padding:.75em .9em .7em;font-size:12px;font-size:clamp(9px,2.6cqmin,15px);background:var(--paper);color:var(--ink);border-radius:.32em;transform:rotate(-4deg);box-shadow:0 1px 2px rgba(0,0,0,.22),0 .45em 1.3em rgba(0,0,0,.3);pointer-events:none}
+.stk img{display:block;width:auto;height:2.1em}
+.stk span{display:block;font:600 .74em/1 var(--f-display);letter-spacing:.24em;margin-right:-.24em;text-transform:uppercase}
 .ht:focus-visible{outline:none}
 .ht:focus-visible::before{content:"";position:absolute;inset:6px;z-index:2;border:2px solid #fff;box-shadow:0 0 0 2px #000,inset 0 0 0 2px #000;pointer-events:none}
 @media (hover:hover){
-  .ht:hover img,.ht:focus-visible img{transform:scale(1.035);filter:brightness(.8)}
+  .ht:hover>img,.ht:focus-visible>img{transform:scale(1.035);filter:brightness(.8)}
 }
 
 /* ---------- reel, at the top of films ---------- */
@@ -399,7 +408,7 @@ section[id]{scroll-margin-top:var(--bar)}
 .js .rvm.in .mask:nth-child(3)>span{transition-delay:.16s}
 @media (prefers-reduced-motion:reduce){
   .js .rv,.js .rvm .mask>span{opacity:1!important;transform:none!important;transition:none!important}
-  .tile img,.case .ph img,.ht img{transition:none!important}
+  .tile img,.case .ph img,.ht>img{transition:none!important}
 }
 
 /* ---------- responsive ---------- */
@@ -636,6 +645,15 @@ HOME.forEach(function(h,n){
   b.appendChild(img);
   var cap=el('span','cap vh');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
   b.appendChild(cap);
+  if(h.mark){
+    var mk=el('span','mk');mk.setAttribute('aria-hidden','true');if(h.mh)mk.style.setProperty('--mh',h.mh);
+    if(h.pre)mk.appendChild(el('span','pre',h.pre));
+    var lg=el('img');lg.src=h.mark;lg.alt='';lg.decoding='async';mk.appendChild(lg);b.appendChild(mk);
+  }
+  if(h.award){
+    var st=el('span','stk'),al=el('img');al.src=h.award.logo;al.alt=h.award.name;al.decoding='async';
+    st.appendChild(al);st.appendChild(el('span',null,h.award.text));b.appendChild(st);
+  }
   li.appendChild(b);home.appendChild(li);
 });
 
