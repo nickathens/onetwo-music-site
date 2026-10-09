@@ -434,15 +434,6 @@ window.OT_WORK=[
   "role": "",
   "story": "",
   "credits": []
- },
- {
-  "id": "483995473",
-  "client": "Cybereason",
-  "title": "",
-  "img": "assets/media/web/OWL.original.jpg",
-  "role": "",
-  "story": "",
-  "credits": []
  }
 ];
 window.OT_TEAM=[
