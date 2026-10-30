@@ -618,7 +618,8 @@ var WORK=W.OT_WORK||[], FILMS=(W.OT_FILMS||[]).filter(function(f){return f.kind!
 function el(tag,cls,text){var e=D.createElement(tag);if(cls)e.className=cls;if(text!=null){e.textContent=text;if(GREEK.test(text))e.lang='el'}return e}
 function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
 function name(w){return w.title?w.client+', '+w.title:w.client}
-function vimeoUrl(w){return 'https://vimeo.com/'+encodeURIComponent(w.id)}
+function onYouTube(w){return w.host==='youtube'}
+function watchUrl(w){return onYouTube(w)?'https://www.youtube.com/watch?v='+encodeURIComponent(w.id):'https://vimeo.com/'+encodeURIComponent(w.id)}
 function credLine(w,into){
   var parts=[];
   if(w.role)parts.push([null,w.role]);
@@ -640,7 +641,7 @@ var byId={};WORK.forEach(function(w,i){byId[w.id]=i});
 var HOME=(W.OT_HOME||[]).filter(function(h){return Object.prototype.hasOwnProperty.call(byId,h.id)});
 var home=$('#home');
 HOME.forEach(function(h,n){
-  var i=byId[h.id],w=WORK[i],li=el('li'),b=el('a','ht');b.href=vimeoUrl(w);b.dataset.open=i;b.dataset.list='home';
+  var i=byId[h.id],w=WORK[i],li=el('li'),b=el('a','ht');b.href=watchUrl(w);b.dataset.open=i;b.dataset.list='home';
   var img=el('img');img.src=w.hd||w.img;img.alt='';img.decoding='async';if(n<3)img.fetchPriority='high';if(h.pos)img.style.objectPosition=h.pos;
   b.appendChild(img);
   var cap=el('span','cap vh');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
@@ -673,7 +674,7 @@ var services=$('#services');
 var clients=$('#clients'),seen={};
 WORK.forEach(function(w,i){
   var k=w.client.toLowerCase();if(seen[k])return;seen[k]=1;
-  var li=el('li'),b=el('a',null,w.client);b.href=vimeoUrl(w);b.dataset.open=i;b.dataset.img=w.img;
+  var li=el('li'),b=el('a',null,w.client);b.href=watchUrl(w);b.dataset.open=i;b.dataset.img=w.img;
   var sl=el('span','sl','\u00a0/ ');sl.setAttribute('aria-hidden','true');
   li.appendChild(b);li.appendChild(sl);clients.appendChild(li);
 });
@@ -687,7 +688,7 @@ $('#workCount').textContent=WORK.length;
 var cases=$('#cases');
 featured.forEach(function(p,n){
   var w=p[0],i=p[1],a=el('article','case rv');a.style.transitionDelay=((n%2)*110)+'ms';
-  var b=el('a','ph');b.href=vimeoUrl(w);b.dataset.open=i;b.setAttribute('aria-label','Play '+name(w));
+  var b=el('a','ph');b.href=watchUrl(w);b.dataset.open=i;b.setAttribute('aria-label','Play '+name(w));
   var img=el('img');img.src=w.hd||w.img;img.alt='';img.loading='lazy';img.decoding='async';
   b.appendChild(img);b.appendChild(el('span','chip','Play'));a.appendChild(b);
   if(w.role)a.appendChild(el('p','lab tags',w.role));
@@ -700,7 +701,7 @@ featured.forEach(function(p,n){
 var grid=$('#grid');
 rest.forEach(function(p,n){
   var w=p[0],i=p[1],li=el('li','rv');li.style.transitionDelay=((n%3)*70)+'ms';
-  var b=el('a','tile');b.href=vimeoUrl(w);b.dataset.open=i;
+  var b=el('a','tile');b.href=watchUrl(w);b.dataset.open=i;
   var ph=el('span','ph'),img=el('img');img.src=w.img;img.alt='';img.loading='lazy';img.decoding='async';if(w.pos)img.style.objectPosition=w.pos;
   ph.appendChild(img);b.appendChild(ph);
   var cap=el('span','cap');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
@@ -804,13 +805,20 @@ function openAt(k){
   var N=list.length;pos=(k+N)%N;cur=list[pos];var w=WORK[cur];
   lbFrame.textContent='';
   var f=D.createElement('iframe');
-  f.src='https://player.vimeo.com/video/'+encodeURIComponent(w.id)+'?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
-  f.allow='autoplay; fullscreen; picture-in-picture';f.setAttribute('allowfullscreen','');f.title=name(w);
+  if(onYouTube(w)){
+    /* YouTube's privacy-enhanced player. With no referrer it shows error 153 instead of the film, so the policy is pinned. */
+    f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(w.id)+'?autoplay=1&rel=0&playsinline=1';
+    f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture';f.referrerPolicy='strict-origin-when-cross-origin';
+  }else{
+    f.src='https://player.vimeo.com/video/'+encodeURIComponent(w.id)+'?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
+    f.allow='autoplay; fullscreen; picture-in-picture';
+  }
+  f.setAttribute('allowfullscreen','');f.title=name(w);
   lbFrame.appendChild(f);
   lbTitle.textContent='';titleInto(lbTitle,w);
   lbCred.textContent='';credLine(w,lbCred);
   lbCount.textContent=String(pos+1).padStart(2,'0')+' / '+String(N).padStart(2,'0');
-  lbVimeo.href=vimeoUrl(w);
+  lbVimeo.href=watchUrl(w);lbVimeo.textContent=onYouTube(w)?'Open on YouTube':'Open on Vimeo';
   lbPrev.hidden=lbNext.hidden=false;
   lbShow();
 }
@@ -820,7 +828,7 @@ function openReel(){
   lbFrame.appendChild(v);
   lbTitle.textContent='';lbTitle.appendChild(el('span',null,'OneTwo Music'));lbTitle.appendChild(el('span','sep','·'));lbTitle.appendChild(el('span',null,REEL.title||'Reel'));
   lbCred.textContent='';lbCount.textContent='Reel';
-  lbVimeo.href='https://vimeo.com/'+(REEL.vimeo||'onetwomusic');
+  lbVimeo.href='https://vimeo.com/'+(REEL.vimeo||'onetwomusic');lbVimeo.textContent='Open on Vimeo';
   lbPrev.hidden=lbNext.hidden=true;
   lbShow();
   var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});
