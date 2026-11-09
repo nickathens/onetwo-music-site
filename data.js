@@ -27,7 +27,7 @@ window.OT_HOME=[
  {"id": "845010377", "mark": "assets/logos/violife.svg", "mh": 1.6},
  {"id": "809005763", "pos": "22% 50%", "mark": "assets/logos/google.svg", "pre": "Athens with", "mh": 0.85},
  {"id": "429260241", "pos": "100% 0%", "mark": "assets/logos/hyundai.png", "mh": 0.88},
- {"id": "1070309018", "mark": "assets/logos/fischer.svg", "mh": 2.9},
+ {"id": "GdPAD2dsuvk", "mark": "assets/logos/kentia.png", "mh": 1},
  {"id": "BON-xQWiXq0", "mark": "assets/logos/superbet.svg", "mh": 1}
 ];
 /* The work. Each job is a video on Vimeo by its id, unless it says "host": "youtube": then id is the YouTube video's id. */
@@ -39,7 +39,6 @@ window.OT_WORK=[
   "title": "Ο ΟΛΥΜΠΙΑΚΟΣ είναι ο ΛΑΟΣ του!",
   "img": "assets/media/hd/BON-xQWiXq0.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -49,7 +48,6 @@ window.OT_WORK=[
   "title": "Timeless",
   "img": "assets/media/hd/GdPAD2dsuvk.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -58,7 +56,6 @@ window.OT_WORK=[
   "title": "Σημάδια",
   "img": "assets/media/hd/1170671354.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -67,7 +64,6 @@ window.OT_WORK=[
   "title": "Θα Σέβεσαι",
   "img": "assets/media/web/thumb_JkUngk6.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -76,7 +72,6 @@ window.OT_WORK=[
   "title": "Taste the Experience",
   "img": "assets/media/hd/1070309018.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -85,7 +80,6 @@ window.OT_WORK=[
   "title": "Ο Καθένας τον Χαλβά του",
   "img": "assets/media/web/thumb_1.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -94,7 +88,6 @@ window.OT_WORK=[
   "title": "The Evolution of N: Winter Test",
   "img": "assets/media/web/maxresdefault.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -117,9 +110,7 @@ window.OT_WORK=[
     "Production",
     "Picky Productions"
    ]
-  ],
-  "story": "Sound design and mixing for Google's audio walks through Athens, where Athenians share their favourite places and the stories behind them.",
-  "featured": 2
+  ]
  },
  {
   "id": "878232848",
@@ -128,7 +119,6 @@ window.OT_WORK=[
   "img": "assets/media/hd/878232848.jpg",
   "pos": "62% 40%",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -150,8 +140,7 @@ window.OT_WORK=[
     "Production",
     "Topcut Modiano"
    ]
-  ],
-  "story": ""
+  ]
  },
  {
   "id": "686301927",
@@ -172,8 +161,7 @@ window.OT_WORK=[
     "Production",
     "Avion Films"
    ]
-  ],
-  "story": ""
+  ]
  },
  {
   "id": "533082924",
@@ -190,8 +178,7 @@ window.OT_WORK=[
     "Agency",
     "Cream&Rascal"
    ]
-  ],
-  "story": ""
+  ]
  },
  {
   "id": "878248790",
@@ -199,7 +186,6 @@ window.OT_WORK=[
   "title": "Στα Lidl παίρνουμε το φρέσκο ψάρι στα σοβαρά",
   "img": "assets/media/web/Screenshot_2023-10-26_at_2.31.22_PM.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -208,7 +194,6 @@ window.OT_WORK=[
   "title": "Θέλω να γίνω το αύριο αυτού του κόσμου",
   "img": "assets/media/web/maxresdefault_7P67zZi.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -217,7 +202,6 @@ window.OT_WORK=[
   "title": "Αστροναύτης",
   "img": "assets/media/web/Screenshot_2023-10-26_at_1.58.21_PM.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -226,7 +210,6 @@ window.OT_WORK=[
   "title": "Ταχίνι",
   "img": "assets/media/web/olympos.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -235,7 +218,6 @@ window.OT_WORK=[
   "title": "Be a Natural",
   "img": "assets/media/web/Screenshot_2023-10-26_at_2.30.22_PM.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -258,9 +240,7 @@ window.OT_WORK=[
     "Production",
     "TopCut Modiano"
    ]
-  ],
-  "story": "Music for Grey's campaign for Pantene, directed by Argiris Papadimitropoulos.",
-  "featured": 3
+  ]
  },
  {
   "id": "329069225",
@@ -281,9 +261,7 @@ window.OT_WORK=[
     "Production",
     "Top Cut Modiano"
    ]
-  ],
-  "story": "Original music and sound design for STR8, starring Giannis Antetokounmpo.",
-  "featured": 1
+  ]
  },
  {
   "id": "293696946",
@@ -291,7 +269,6 @@ window.OT_WORK=[
   "title": "Crystal Pure",
   "img": "assets/media/web/Screenshot_2022-03-10_at_17.14.05.original.jpg",
   "role": "Original music",
-  "story": "",
   "credits": []
  },
  {
@@ -300,7 +277,6 @@ window.OT_WORK=[
   "title": "",
   "img": "assets/media/web/CoffeeIsland_Photo.original.jpg",
   "role": "Original music & sound design",
-  "story": "",
   "credits": []
  },
  {
@@ -309,7 +285,6 @@ window.OT_WORK=[
   "title": "",
   "img": "assets/media/web/GreenCola_Photo.original.jpg",
   "role": "Original music",
-  "story": "",
   "credits": []
  },
  {
@@ -318,7 +293,6 @@ window.OT_WORK=[
   "title": "",
   "img": "assets/media/web/Goodys_Photo.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -327,7 +301,6 @@ window.OT_WORK=[
   "title": "2015",
   "img": "assets/media/web/Screenshot_2020-11-25_at_15.47.37.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -341,8 +314,7 @@ window.OT_WORK=[
     "Directors",
     "Nikolas Kouloglou & Panos Kallitsis"
    ]
-  ],
-  "story": ""
+  ]
  },
  {
   "id": "258967851",
@@ -364,9 +336,7 @@ window.OT_WORK=[
     "Production",
     "TopCut Modiano"
    ]
-  ],
-  "story": "Original music and sound design, with lyrics and vocals by Elephant Phinix.",
-  "featured": 4
+  ]
  },
  {
   "id": "263015306",
@@ -374,7 +344,6 @@ window.OT_WORK=[
   "title": "Fruits & Nuts",
   "img": "assets/media/web/BakeRolls_Photo.original.jpg",
   "role": "Original music",
-  "story": "",
   "credits": []
  },
  {
@@ -383,7 +352,6 @@ window.OT_WORK=[
   "title": "",
   "img": "assets/media/web/PetroGaz_Photo.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -392,7 +360,6 @@ window.OT_WORK=[
   "title": "",
   "img": "assets/media/web/Dimmelo_Photo.original.jpg",
   "role": "Original music & sound design",
-  "story": "",
   "credits": []
  },
  {
@@ -401,7 +368,6 @@ window.OT_WORK=[
   "title": "Speedoffer",
   "img": "assets/media/web/Spitia_Photo.original.jpg",
   "role": "Original music & sound design",
-  "story": "",
   "credits": []
  },
  {
@@ -410,7 +376,6 @@ window.OT_WORK=[
   "title": "#pistepseto",
   "img": "assets/media/web/Screenshot_2022-03-10_at_17.14.58.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -419,7 +384,6 @@ window.OT_WORK=[
   "title": "100% Pure",
   "img": "assets/media/web/Serkova18_Photo.original.jpg",
   "role": "Original music & sound design",
-  "story": "",
   "credits": []
  },
  {
@@ -428,7 +392,6 @@ window.OT_WORK=[
   "title": "",
   "img": "assets/media/web/Zero_Photo.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -437,7 +400,6 @@ window.OT_WORK=[
   "title": "Tsourekaki",
   "img": "assets/media/web/Tsourekaki_Photo.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -446,7 +408,6 @@ window.OT_WORK=[
   "title": "Galaxy M51",
   "img": "assets/media/web/Screenshot_2020-11-26_at_12.25.03.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  },
  {
@@ -455,7 +416,6 @@ window.OT_WORK=[
   "title": "Galaxy M51",
   "img": "assets/media/web/Screenshot_2020-11-26_at_12.37.48.original.jpg",
   "role": "",
-  "story": "",
   "credits": []
  }
 ];

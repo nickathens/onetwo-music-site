@@ -272,20 +272,8 @@ section[id]{scroll-margin-top:var(--bar)}
 .giant{font:900 clamp(72px,13.5vw,250px)/.8 var(--f-display);letter-spacing:-.055em;text-transform:uppercase;margin-left:-.05em}
 .sec-head p{max-width:30em;text-align:right;padding-bottom:.4em}
 .sec-head .n{display:block;font:800 clamp(28px,3vw,48px)/1 var(--f-display);letter-spacing:-.03em;margin-bottom:10px}
-.cases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(48px,5vw,80px) clamp(16px,1.7vw,28px);padding:0 var(--pad);margin-bottom:clamp(96px,10vw,170px)}
-.case .ph{position:relative;display:block;width:100%;aspect-ratio:16/9;overflow:hidden;background:#111;color:inherit}
-.case .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s var(--ease)}
-.chip{position:absolute;left:18px;bottom:18px;display:inline-flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);border-radius:999px;padding:10px 16px 9px;font:700 12px/1 var(--f-label);letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease),transform .5s var(--ease)}
-.chip::before{content:"";width:0;height:0;border-left:7px solid currentColor;border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
-.case .ph:hover img,.case .ph:focus-visible img{transform:scale(1.035);filter:brightness(.82)}
-.case .ph:hover .chip,.case .ph:focus-visible .chip{opacity:1;transform:none}
-.case .tags{margin-top:20px}
-.case h3{margin-top:10px;font:800 clamp(24px,2.4vw,40px)/1.02 var(--f-display);letter-spacing:-.03em;text-transform:uppercase}
-.case h3 .sep{opacity:.35;font-weight:400;margin:0 .2em}
-.case .story{margin-top:14px;font-size:clamp(16px,1.25vw,19px);line-height:1.45;max-width:34em}
 .cred{font:500 13px/1.5 var(--f-label);letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
 .cred b{font-weight:700;color:var(--fg)}
-.case .cred{margin-top:14px}
 
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:0 var(--pad)}
 .tile{position:relative;display:block;width:100%;color:#fff;text-decoration:none}
@@ -408,7 +396,7 @@ section[id]{scroll-margin-top:var(--bar)}
 .js .rvm.in .mask:nth-child(3)>span{transition-delay:.16s}
 @media (prefers-reduced-motion:reduce){
   .js .rv,.js .rvm .mask>span{opacity:1!important;transform:none!important;transition:none!important}
-  .tile img,.case .ph img,.ht>img{transition:none!important}
+  .tile img,.ht>img{transition:none!important}
 }
 
 /* ---------- responsive ---------- */
@@ -425,7 +413,6 @@ section[id]{scroll-margin-top:var(--bar)}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px}
   .more-li{grid-column:span 1}
   .pillars{grid-template-columns:1fr;gap:30px;max-width:38em}
-  .cases{grid-template-columns:1fr}
   .films-wrap{grid-template-columns:1fr}
   .film-poster{display:none}
   .f-poster-m{display:block;width:min(46%,220px);aspect-ratio:2/3;object-fit:cover;margin:4px 0 18px clamp(72px,calc(6vw + 18px),110px)}
@@ -436,7 +423,6 @@ section[id]{scroll-margin-top:var(--bar)}
   .tile{color:inherit}
   .tile .cap{position:static;opacity:1;transform:none;padding:12px 0 0}
   .tile .cr{color:var(--mut)}
-  .chip{opacity:1;transform:none}
 }
 @media (max-aspect-ratio:7/5) and (min-width:641px){
   .home-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr))}
@@ -522,7 +508,6 @@ section[id]{scroll-margin-top:var(--bar)}
     <h2 class="giant rvm"><span class="mask"><span>Work</span></span></h2>
     <p class="rv"><span class="n" id="workCount"></span><span class="lab">Commercials and brand films</span></p>
   </div>
-  <div class="cases" id="cases"></div>
   <ul class="grid" id="grid"></ul>
 </section>
 
@@ -682,27 +667,13 @@ WORK.forEach(function(w,i){
 var lastSl=$$('.sl',clients).pop();if(lastSl)lastSl.remove();
 
 /* ---------- work ---------- */
-var featured=WORK.map(function(w,i){return [w,i]}).filter(function(p){return p[0].featured}).sort(function(a,b){return a[0].featured-b[0].featured});
-var rest=WORK.map(function(w,i){return [w,i]}).filter(function(p){return !p[0].featured});
 $('#workCount').textContent=WORK.length;
-var cases=$('#cases');
-featured.forEach(function(p,n){
-  var w=p[0],i=p[1],a=el('article','case rv');a.style.transitionDelay=((n%2)*110)+'ms';
-  var b=el('a','ph');b.href=watchUrl(w);b.dataset.open=i;b.setAttribute('aria-label','Play '+name(w));
-  var img=el('img');img.src=w.hd||w.img;img.alt='';img.loading='lazy';img.decoding='async';
-  b.appendChild(img);b.appendChild(el('span','chip','Play'));a.appendChild(b);
-  if(w.role)a.appendChild(el('p','lab tags',w.role));
-  var h=el('h3');titleInto(h,w);a.appendChild(h);
-  if(w.story)a.appendChild(el('p','story',w.story));
-  var c=el('p','cred');(w.credits||[]).forEach(function(cr,k){if(k)c.appendChild(D.createTextNode(' · '));c.appendChild(el('b',null,cr[0]));c.appendChild(D.createTextNode(' '));c.appendChild(el('span',null,cr[1]))});
-  if(c.childNodes.length)a.appendChild(c);
-  cases.appendChild(a);
-});
+/* every job is a tile, in the work list's order; a job with a sharper still (hd) shows that one */
 var grid=$('#grid');
-rest.forEach(function(p,n){
-  var w=p[0],i=p[1],li=el('li','rv');li.style.transitionDelay=((n%3)*70)+'ms';
+WORK.forEach(function(w,i){
+  var li=el('li','rv');li.style.transitionDelay=((i%3)*70)+'ms';
   var b=el('a','tile');b.href=watchUrl(w);b.dataset.open=i;
-  var ph=el('span','ph'),img=el('img');img.src=w.img;img.alt='';img.loading='lazy';img.decoding='async';if(w.pos)img.style.objectPosition=w.pos;
+  var ph=el('span','ph'),img=el('img');img.src=w.hd||w.img;img.alt='';img.loading='lazy';img.decoding='async';if(w.pos)img.style.objectPosition=w.pos;
   ph.appendChild(img);b.appendChild(ph);
   var cap=el('span','cap');cap.appendChild(el('span','cl',w.client));if(w.title)cap.appendChild(el('span','ti',w.title));
   var cr=el('span','cr');if(credLine(w,cr))cap.appendChild(cr);
@@ -789,7 +760,7 @@ reelApply();
 
 /* ---------- lightbox ---------- */
 var lb=$('#lb'),lbFrame=$('#lbFrame'),lbTitle=$('#lbTitle'),lbCred=$('#lbCred'),lbCount=$('#lbCount'),lbVimeo=$('#lbVimeo'),lbPrev=$('#lbPrev'),lbNext=$('#lbNext');
-var ORDER=featured.map(function(p){return p[1]}).concat(rest.map(function(p){return p[1]})),HOME_ORDER=HOME.map(function(h){return byId[h.id]});
+var ORDER=WORK.map(function(w,i){return i}),HOME_ORDER=HOME.map(function(h){return byId[h.id]});
 var list=ORDER,pos=-1,cur=-1,lastFocus=null;
 function lbShow(){
   if(!lb.hidden)return;

@@ -13,7 +13,7 @@ OneTwo Music is a bespoke film music production house in Athens.
 - `assets/reel/`: the showreel (`reel_web.mp4`) and its poster frame. It plays at the top of the Films section.
 - `assets/films/`, `assets/scores/`: film posters and the score previews.
 - `assets/brand/`: the logo files; `mark.svg` is the boxed mark used as the favicon.
-- `assets/logos/`: the client logos and the Ciclope logo on the opening grid, each from the brand's own website (white versions; Superbet's is the white logo superbet.gr itself uses; the Olympos one, made white from its own shapes, is kept but no longer on the grid).
+- `assets/logos/`: the client logos and the Ciclope logo on the opening grid, each from the brand's own website, KENTIA's from its own YouTube channel (white versions; Superbet's is the white logo superbet.gr itself uses). Fischer's and the Olympos one (made white from its own shapes) are kept but no longer on the grid.
 
 Work credits come from the descriptions on vimeo.com/onetwomusic. A job without a credit line there gets none on the site.
 
