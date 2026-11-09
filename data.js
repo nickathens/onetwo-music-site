@@ -18,7 +18,7 @@ window.OT_PILLARS=[
 window.OT_SERVICES=["Original music", "Sound design & mixing", "Music editing", "Music rights"];
 window.OT_CONTACT={"phone": "+30 210 7714726", "email": "info@onetwo-music.com", "location": "Athens, Greece", "vimeo": "https://vimeo.com/onetwomusic"};
 window.OT_REEL={"src": "assets/reel/reel_web.mp4", "poster": "assets/reel/hero_poster.jpg", "start": 6.9, "title": "Film music reel", "vimeo": "1025389547"};
-/* The opening grid: the six jobs it shows, in order, by Vimeo id (each one is in OT_WORK below).
+/* The opening grid: the six jobs it shows, in order, by id (each one is in OT_WORK below).
    pos is the part of the still that stays in view when a tile crops it.
    mark is the client's logo, white in the bottom left corner; mh its height (1 = 4.2% of the tile's shorter side, kept between 14 and 26 px);
    pre words set before it. award is a sticker in the top right corner: its logo, its name for screen readers, its words. */
@@ -28,10 +28,20 @@ window.OT_HOME=[
  {"id": "809005763", "pos": "22% 50%", "mark": "assets/logos/google.svg", "pre": "Athens with", "mh": 0.85},
  {"id": "429260241", "pos": "100% 0%", "mark": "assets/logos/hyundai.png", "mh": 0.88},
  {"id": "1070309018", "mark": "assets/logos/fischer.svg", "mh": 2.9},
- {"id": "686305039", "pos": "100% 50%", "mark": "assets/logos/olympos-white.svg", "mh": 2.25}
+ {"id": "BON-xQWiXq0", "mark": "assets/logos/superbet.svg", "mh": 1}
 ];
 /* The work. Each job is a video on Vimeo by its id, unless it says "host": "youtube": then id is the YouTube video's id. */
 window.OT_WORK=[
+ {
+  "id": "BON-xQWiXq0",
+  "host": "youtube",
+  "client": "Superbet",
+  "title": "Ο ΟΛΥΜΠΙΑΚΟΣ είναι ο ΛΑΟΣ του!",
+  "img": "assets/media/hd/BON-xQWiXq0.jpg",
+  "role": "",
+  "story": "",
+  "credits": []
+ },
  {
   "id": "GdPAD2dsuvk",
   "host": "youtube",
